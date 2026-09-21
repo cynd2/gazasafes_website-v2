@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cityMapQueries = {
       Madiun: 'Brankas GAZASAFES Madiun',
       Kediri: 'Brankas Murah Kediri',
+      Mojokerto: 'Saiful Brankas Mojokerto, Jl. Kartini Stand Utara Lapangan, Seduri, Mojosari, Kabupaten Mojokerto',
     };
 
     const setActiveCity = (city) => {
@@ -37,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       pill.addEventListener('click', () => setActiveCity(pill.dataset.city));
     });
 
-    setActiveCity('Pasuruan');
+    setActiveCity('Madiun');
   }
 
   document.querySelectorAll('.faq-item').forEach((item) => {
