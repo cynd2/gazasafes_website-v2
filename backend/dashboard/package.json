@@ -1,0 +1,11 @@
+{
+  "name": "gazasafes-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/copy-vendor.mjs"
+  },
+  "dependencies": {
+    "chart.js": "^4.4.6"
+  }
+}

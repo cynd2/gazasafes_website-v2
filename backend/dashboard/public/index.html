@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GazaSafes Analytics</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-title">GazaSafes <span>Analytics</span></div>
+  <div class="topbar-actions">
+    <span id="connectionStatus" class="connection-status"></span>
+    <button id="themeToggle" class="icon-btn" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+    <button id="settingsBtn" class="icon-btn" type="button" title="Connection settings" aria-label="Connection settings">⚙</button>
+  </div>
+</header>
+
+<main id="app">
+
+  <div id="errorBanner" class="error-banner" hidden></div>
+
+  <section class="filter-row" aria-label="Date range">
+    <div class="preset-group" role="group" aria-label="Date range presets">
+      <button class="preset-btn" data-preset="7">Last 7 days</button>
+      <button class="preset-btn" data-preset="30">Last 30 days</button>
+      <button class="preset-btn" data-preset="90">Last 90 days</button>
+    </div>
+    <div class="custom-range">
+      <label>From <input type="date" id="startDate"></label>
+      <label>To <input type="date" id="endDate"></label>
+      <button id="applyRange" class="apply-btn" type="button">Apply</button>
+    </div>
+  </section>
+
+  <section class="kpi-row" aria-label="Summary">
+    <div class="stat-tile">
+      <div class="stat-label">Total pageviews</div>
+      <div class="stat-value" id="kpiPageviews">–</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Total sessions</div>
+      <div class="stat-value" id="kpiSessions">–</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Avg. session duration</div>
+      <div class="stat-value" id="kpiDuration">–</div>
+    </div>
+  </section>
+
+  <section class="chart-card" aria-labelledby="pageviewsTitle">
+    <div class="card-head">
+      <h2 id="pageviewsTitle">Pageviews over time</h2>
+      <button class="table-toggle" data-target="pageviewsTable" type="button">View as table</button>
+    </div>
+    <div class="chart-wrap"><canvas id="pageviewsChart" height="90"></canvas></div>
+    <div class="table-wrap" id="pageviewsTable" hidden></div>
+  </section>
+
+  <section class="chart-grid">
+    <div class="chart-card" aria-labelledby="topPagesTitle">
+      <div class="card-head">
+        <h2 id="topPagesTitle">Top pages</h2>
+        <button class="table-toggle" data-target="topPagesTable" type="button">View as table</button>
+      </div>
+      <div class="chart-wrap"><canvas id="topPagesChart"></canvas></div>
+      <div class="table-wrap" id="topPagesTable" hidden></div>
+    </div>
+
+    <div class="chart-card" aria-labelledby="clickEventsTitle">
+      <div class="card-head">
+        <h2 id="clickEventsTitle">Click events</h2>
+        <button class="table-toggle" data-target="clickEventsTable" type="button">View as table</button>
+      </div>
+      <div class="chart-wrap"><canvas id="clickEventsChart"></canvas></div>
+      <div class="table-wrap" id="clickEventsTable" hidden></div>
+    </div>
+  </section>
+
+  <section class="chart-card" aria-labelledby="trafficSourcesTitle">
+    <div class="card-head">
+      <h2 id="trafficSourcesTitle">Traffic sources</h2>
+      <button class="table-toggle" data-target="trafficSourcesTable" type="button">View as table</button>
+    </div>
+    <div class="chart-wrap"><canvas id="trafficSourcesChart"></canvas></div>
+    <div class="table-wrap" id="trafficSourcesTable" hidden></div>
+  </section>
+
+  <section class="chart-card" aria-labelledby="sessionsTitle">
+    <div class="card-head">
+      <h2 id="sessionsTitle">Sessions</h2>
+    </div>
+    <div class="table-wrap" id="sessionsTable"></div>
+    <div class="pagination-row">
+      <button id="sessionsPrev" class="pager-btn" type="button">Previous</button>
+      <span id="sessionsPageInfo" class="pager-info"></span>
+      <button id="sessionsNext" class="pager-btn" type="button">Next</button>
+    </div>
+  </section>
+
+</main>
+
+<div id="settingsOverlay" class="overlay" hidden>
+  <div class="settings-panel" role="dialog" aria-labelledby="settingsTitle" aria-modal="true">
+    <h2 id="settingsTitle">Connect to reporting API</h2>
+    <p class="settings-hint">These stay only in this browser (localStorage), never sent anywhere but the API you enter below.</p>
+    <label class="settings-field">
+      API base URL
+      <input type="text" id="apiBaseInput" placeholder="http://localhost:8788">
+    </label>
+    <label class="settings-field">
+      API key
+      <input type="password" id="apiKeyInput" placeholder="Bearer token">
+    </label>
+    <div class="settings-actions">
+      <button id="settingsCancel" class="secondary-btn" type="button">Cancel</button>
+      <button id="settingsSave" class="apply-btn" type="button">Save &amp; connect</button>
+    </div>
+  </div>
+</div>
+
+<script src="vendor/chart.umd.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
